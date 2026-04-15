@@ -15,7 +15,7 @@
 | ID | Feature | Status | Spec | Created |
 |----|---------|--------|------|---------|
 | PROJ-1 | Auth & Vereinsprofil | In Progress | [PROJ-1-auth-und-vereinsprofil.md](PROJ-1-auth-und-vereinsprofil.md) | 2026-04-15 |
-| PROJ-2 | Modul-Framework & Fortschritts-Tracking | Planned | [PROJ-2-modul-framework-und-fortschritt.md](PROJ-2-modul-framework-und-fortschritt.md) | 2026-04-15 |
+| PROJ-2 | Modul-Framework & Fortschritts-Tracking | In Progress | [PROJ-2-modul-framework-und-fortschritt.md](PROJ-2-modul-framework-und-fortschritt.md) | 2026-04-15 |
 | PROJ-3 | KI-Erklärungen (API-Route) | Planned | [PROJ-3-ki-erklaerungen-api.md](PROJ-3-ki-erklaerungen-api.md) | 2026-04-15 |
 | PROJ-4 | Vorlagen-Bibliothek | Planned | [PROJ-4-vorlagen-bibliothek.md](PROJ-4-vorlagen-bibliothek.md) | 2026-04-15 |
 | PROJ-5 | Zertifikat | Planned | [PROJ-5-zertifikat.md](PROJ-5-zertifikat.md) | 2026-04-15 |
