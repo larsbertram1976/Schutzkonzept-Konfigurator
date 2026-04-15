@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { AuthShell } from "@/components/auth-shell";
 import { Button } from "@/components/ui/button";
@@ -11,6 +12,17 @@ import { createClient } from "@/lib/supabase/client";
 import { registerSchema } from "@/lib/auth/schemas";
 
 export default function RegisterPage() {
+  return (
+    <Suspense fallback={null}>
+      <RegisterPageInner />
+    </Suspense>
+  );
+}
+
+function RegisterPageInner() {
+  const searchParams = useSearchParams();
+  const inviteToken = searchParams.get("invite");
+  const nextPath = inviteToken ? `/einladung/${inviteToken}` : "/dashboard";
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,7 +44,7 @@ export default function RegisterPage() {
         password,
         options: {
           data: { display_name: displayName },
-          emailRedirectTo: `${window.location.origin}/auth/callback`,
+          emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(nextPath)}`,
         },
       });
       if (error) {
@@ -72,12 +84,21 @@ export default function RegisterPage() {
       footer={
         <>
           Schon registriert?{" "}
-          <Link href="/login" className="text-blue-600 hover:underline">
+          <Link
+            href={inviteToken ? `/login?invite=${inviteToken}` : "/login"}
+            className="text-blue-600 hover:underline"
+          >
             Anmelden
           </Link>
         </>
       }
     >
+      {inviteToken && (
+        <div className="mb-4 rounded-lg border border-blue-200 bg-blue-50 p-3 text-sm text-blue-800">
+          Du wurdest in einen Verein eingeladen. Nach der Registrierung wirst du
+          automatisch beigetreten.
+        </div>
+      )}
       <form onSubmit={onSubmit} className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="name">Dein Name</Label>

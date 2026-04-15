@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { AuthShell } from "@/components/auth-shell";
 import { Button } from "@/components/ui/button";
@@ -10,6 +11,17 @@ import { Label } from "@/components/ui/label";
 import { createClient } from "@/lib/supabase/client";
 
 export default function LoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginPageInner />
+    </Suspense>
+  );
+}
+
+function LoginPageInner() {
+  const searchParams = useSearchParams();
+  const inviteToken = searchParams.get("invite");
+  const nextPath = inviteToken ? `/einladung/${inviteToken}` : "/dashboard";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -28,7 +40,7 @@ export default function LoginPage() {
         return;
       }
       if (data.session) {
-        window.location.href = "/dashboard";
+        window.location.href = nextPath;
       }
     } finally {
       setLoading(false);
@@ -42,12 +54,21 @@ export default function LoginPage() {
       footer={
         <>
           Noch kein Konto?{" "}
-          <Link href="/registrieren" className="text-blue-600 hover:underline">
+          <Link
+            href={inviteToken ? `/registrieren?invite=${inviteToken}` : "/registrieren"}
+            className="text-blue-600 hover:underline"
+          >
             Jetzt registrieren
           </Link>
         </>
       }
     >
+      {inviteToken && (
+        <div className="mb-4 rounded-lg border border-blue-200 bg-blue-50 p-3 text-sm text-blue-800">
+          Du wurdest in einen Verein eingeladen. Nach dem Login trittst du
+          automatisch bei.
+        </div>
+      )}
       <form onSubmit={onSubmit} className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="email">E-Mail</Label>
