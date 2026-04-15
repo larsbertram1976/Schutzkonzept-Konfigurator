@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Shield, BookOpen, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -6,8 +7,16 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-100">
       <header className="flex items-center justify-between px-6 py-6 md:px-12">
-        <div className="flex items-center gap-2">
-          <Shield className="h-6 w-6 text-blue-400" />
+        <div className="flex items-center gap-3">
+          <div className="rounded-md bg-white p-1.5">
+            <Image
+              src="/Logo_HSB.svg.png"
+              alt="Hamburger Sportbund"
+              width={40}
+              height={34}
+              priority
+            />
+          </div>
           <span className="font-semibold">Schutzkonzept-Generator</span>
         </div>
         <div className="flex items-center gap-3">
@@ -24,8 +33,19 @@ export default function HomePage() {
       </header>
 
       <main className="mx-auto max-w-3xl px-6 py-20 text-center md:py-28">
+        <div className="mb-8 flex justify-center">
+          <div className="rounded-2xl bg-white p-5 shadow-xl shadow-blue-950/40">
+            <Image
+              src="/Logo_HSB.svg.png"
+              alt="Hamburger Sportbund"
+              width={120}
+              height={100}
+              priority
+            />
+          </div>
+        </div>
         <div className="mb-4 text-xs uppercase tracking-[0.3em] text-blue-400">
-          Für Sportverbände &amp; Vereine
+          Hamburger Sportbund · Für Vereine &amp; Verbände
         </div>
         <h1 className="font-serif text-4xl leading-tight md:text-6xl">
           Kinderschutz,

@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Shield, LogOut, UserRound, Users } from "lucide-react";
+import Image from "next/image";
+import { LogOut, UserRound, Users } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
@@ -34,8 +35,13 @@ export function AppHeader({
   return (
     <header className="border-b border-slate-200 bg-white">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <Link href="/dashboard" className="flex items-center gap-2">
-          <Shield className="h-5 w-5 text-blue-600" />
+        <Link href="/dashboard" className="flex items-center gap-3">
+          <Image
+            src="/Logo_HSB.svg.png"
+            alt="Hamburger Sportbund"
+            width={36}
+            height={30}
+          />
           <span className="font-semibold text-slate-900">
             Schutzkonzept-Generator
           </span>

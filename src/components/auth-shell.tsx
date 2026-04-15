@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Shield } from "lucide-react";
+import Image from "next/image";
 
 export function AuthShell({
   title,
@@ -15,8 +15,13 @@ export function AuthShell({
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
       <header className="px-6 py-6">
-        <Link href="/" className="flex items-center gap-2 text-slate-900">
-          <Shield className="h-5 w-5 text-blue-600" />
+        <Link href="/" className="flex items-center gap-3 text-slate-900">
+          <Image
+            src="/Logo_HSB.svg.png"
+            alt="Hamburger Sportbund"
+            width={36}
+            height={30}
+          />
           <span className="font-semibold">Schutzkonzept-Generator</span>
         </Link>
       </header>
